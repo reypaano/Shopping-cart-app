@@ -1,32 +1,36 @@
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import React, { Fragment, useCallback, useState } from 'react';
+/* eslint-disable react/prop-types */
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import React, { Fragment, useCallback, useState } from 'react'
 import {
   Bars3Icon,
   ShoppingBagIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline';
-import { connect } from 'react-redux';
-import { useAuthContext } from '../../context/authContext';
-import { useCartContext } from '../../context/cartContext';
-import Checkout from '../Checkout';
+} from '@heroicons/react/24/outline'
+import { connect } from 'react-redux'
+import { useAuthContext } from '../../context/authContext'
+import { useCartContext } from '../../context/cartContext'
+import Checkout from '../Checkout'
+import ShoppingIcon from '../../assets/shoppingIcon.png'
+import ProfileIcon from '../../assets/profilePic.jpeg'
+
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
   { name: 'Team', href: '#', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Calendar', href: '#', current: false },
-];
+]
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(' ')
 }
 
 function Header({ cart, logout }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const toggleCheckout = useCallback(() => {
     setOpen(val => !val);
-  }, []);
+  }, [])
 
   return (
     <>
@@ -50,8 +54,9 @@ function Header({ cart, logout }) {
                   <div className="flex flex-shrink-0 items-center">
                     <img
                       className="block h-8 w-auto lg:hidden"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                      alt="Your Company"
+                      src={ShoppingIcon}
+                      alt="Online Shopping"
+                      style={{ width: 100, height: 70 }}
                     />
                     <img
                       className="hidden h-8 w-auto lg:block"
@@ -60,7 +65,7 @@ function Header({ cart, logout }) {
                     />
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-4 mt-3">
                       {navigation.map(item => (
                         <a
                           key={item.name}
@@ -96,7 +101,7 @@ function Header({ cart, logout }) {
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          src={ProfileIcon}
                           alt=""
                         />
                       </Menu.Button>
@@ -186,4 +191,4 @@ function Header({ cart, logout }) {
   );
 }
 
-export default Header;
+export default Header
